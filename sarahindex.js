@@ -26,6 +26,7 @@ map.on('load', function(){
                     },
                     "properties": {
                     "title": "Mapbox DC",
+                    "description":"test description!",
                     "icon": "monument"
                     }
                     }, {
@@ -36,7 +37,19 @@ map.on('load', function(){
                     },
                     "properties": {
                     "title": "Mapbox SF",
+                     "description":"test description!",
                     "icon": "harbor"
+                    }
+                    },{
+                    "type": "Feature",
+                    "geometry": {
+                    "type": "Point",
+                    "coordinates": [-95.568370, 29.795564]
+                    },
+                    "properties": {
+                    "title": "DigitalCrafts",
+                    "description":"<strong>Houston Digital Crafts Campus</strong>, <br> located at The Cannon",
+                    "icon": "monument"
                     }
                     }]
                 }
@@ -50,3 +63,27 @@ map.on('load', function(){
                  }
     })
 })
+
+//display popup on-click
+map.on('click', 'points', function(e){
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    var description = e.features[0].properties.description;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    
+    new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML(description)
+    .addTo(map);
+
+})
+
+map.on('mouseenter', 'places', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+
+map.on('mouseleave', 'places', function () {
+map.getCanvas().style.cursor = '';
+});
