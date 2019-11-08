@@ -50,3 +50,16 @@ map.on('load', function(){
                  }
     })
 })
+function play(element) {
+    // retrieve passed data from element attributes
+    var songTitle = element.getAttribute('title');
+    var albumTitle = element.getAttribute('album');
+    var songFile = element.getAttribute('file');
+    
+    document.getElementById('audio-player').src = songFile;
+    document.getElementById('song-album').innerHTML = albumTitle;
+    document.getElementById('song-title').innerHTML = songTitle;
+    
+    console.log(song);
+    }
+    
