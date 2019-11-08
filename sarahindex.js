@@ -1,7 +1,7 @@
 
 //set access token variable
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyaW9zIiwiYSI6ImNrMm8xbzRpdjB5bG8zZ250N3lncjdidXkifQ.2O_gYD_PFpq2XbsrHQtiyw';
-
+// testing change
 //set map variable 
 var map = new mapboxgl.Map({
 container: 'map', // container id
@@ -50,3 +50,7 @@ map.on('load', function(){
                  }
     })
 })
+map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+    }));
