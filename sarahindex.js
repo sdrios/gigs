@@ -1,4 +1,3 @@
-
 //set access token variable
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyaW9zIiwiYSI6ImNrMm8xbzRpdjB5bG8zZ250N3lncjdidXkifQ.2O_gYD_PFpq2XbsrHQtiyw';
 
@@ -81,7 +80,7 @@ map.on('click', 'points', function(e){
     .addTo(map);
 })
 
-//change cursor to a pointer when the moise is over the points layer
+//change cursor to a pointer when the mouse is over the points layer
 map.on('mouseenter', 'places', function () {
 map.getCanvas().style.cursor = 'pointer';
 });
@@ -89,4 +88,5 @@ map.getCanvas().style.cursor = 'pointer';
 map.on('mouseleave', 'places', function () {
 map.getCanvas().style.cursor = '';
 });
+
 
