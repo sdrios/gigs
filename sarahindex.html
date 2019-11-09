@@ -6,15 +6,29 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
-<link href='sarahindex.css' rel='stylesheet' />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
+<link href='sarahindex.css' rel='stylesheet'>
+<script src ="data.js"></script>
 </head>
 <body>
- 
-<div id='map'></div> //container for map 
 
+    <!--Navbar-->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Gigs</a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Artist" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<!--/.Navbar-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="map-container col-sm-12 col-md-10 col-lg-10">
+
+<div id='map'></div> 
+</div>
+</div>
+</div>
 <!--Local Javascript and Bootstrap Javascript-->
 <script src='sarahindex.js'></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

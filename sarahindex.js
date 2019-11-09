@@ -6,10 +6,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyaW9zIiwiYSI6ImNrMm8xbzRpdjB5bG8zZ250N3lnc
 var map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
-center: [-95.3698, 29.7604], // starting position [lng, lat]
-zoom: 9 // starting zoom
+center: [-97.6764, 38.4067], // starting position [lng, lat]
+zoom: 3.55 // starting zoom
 });
 
+//function that loads features on map load 
 map.on('load', function(){
     map.addLayer({
         "id": "points",
@@ -64,11 +65,12 @@ map.on('load', function(){
     })
 })
 
-//display popup on-click
+//display popup on-click event at the location of feature w/ description HTML from its feature properties
 map.on('click', 'points', function(e){
     var coordinates = e.features[0].geometry.coordinates.slice();
     var description = e.features[0].properties.description;
 
+    //ensure that if map is zoomed out, multiple copies of the feature are visible; the popup appears over the copy being pointed to
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
@@ -77,13 +79,14 @@ map.on('click', 'points', function(e){
     .setLngLat(coordinates)
     .setHTML(description)
     .addTo(map);
-
 })
 
+//change cursor to a pointer when the moise is over the points layer
 map.on('mouseenter', 'places', function () {
 map.getCanvas().style.cursor = 'pointer';
 });
-
+//change cursor back from pointer when it leaves a point 
 map.on('mouseleave', 'places', function () {
 map.getCanvas().style.cursor = '';
 });
+

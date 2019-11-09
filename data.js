@@ -1,4 +1,4 @@
-[
+response = [
   {
     "id": "1017460341",
     "url": "https://www.bandsintown.com/e/1017460341?app_id=234e5ea75754d065ee8978bfc59ead7d&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
@@ -39,6 +39,9 @@
     "artist_id": "2265132",
     "on_sale_datetime": ""
   },
+
+
+  
   {
     "id": "1017460442",
     "url": "https://www.bandsintown.com/e/1017460442?app_id=234e5ea75754d065ee8978bfc59ead7d&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
