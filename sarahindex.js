@@ -5,6 +5,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyaW9zIiwiYSI6ImNrMm8xbzRpdjB5bG8zZ250N3lnc
 var map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+attributionControl: false,
 center: [-97.6764, 38.4067], // starting position [lng, lat]
 zoom: 3.55 // starting zoom
 });
@@ -89,4 +90,5 @@ map.on('mouseleave', 'places', function () {
 map.getCanvas().style.cursor = '';
 });
 
-
+//add navigation controls to map
+map.addControl(new mapboxgl.NavigationControl());

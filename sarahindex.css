@@ -15,11 +15,15 @@ body {
      padding-right: 2px;
  }
 
- .mapboxgl-control-container {
+ /* .mapboxgl-control-container {
      display: none;
- }
+ } */
 
  .results{
      border: 1px black solid;
      
+ }
+
+ a.mapboxgl-ctrl-logo {
+     margin-left: 10px;
  }
