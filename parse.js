@@ -76,16 +76,18 @@ function parseBITData(artist) {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [obj.venue.latitude, obj.venue.longitude]
+                "coordinates": [parseFloat(obj.venue.longitude), parseFloat(obj.venue.latitude)]
             },
             "properties": {
                 "title": obj.venue.name,
-                "icon": "monument",
+                "icon": "horse-riding",
                 "description": obj.offers[0].url
                 // add more details into description - as html
             }
         }))
     })
+
+    
     // let objArray = []
     // let obj = {
     //     "type": "Feature",
@@ -134,7 +136,7 @@ function parseBITData(artist) {
     //     }
     // }))
 }
-console.log(parseBITData('fosterthepeople'))
+//console.log(parseBITData('fosterthepeople'))
 
 //  return response.map(obj => ({
 //     "type": "Feature",
