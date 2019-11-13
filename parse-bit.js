@@ -82,6 +82,7 @@ function parseBITData(artist) {
                 "title": obj.venue.name,
                 "icon": "monument",
                 "description": obj.offers[0].url
+                // add more details into description - as html
             }
         }))
     })
@@ -133,7 +134,7 @@ function parseBITData(artist) {
     //     }
     // }))
 }
-// console.log(parseBITData('fosterthepeople'))
+console.log(parseBITData('fosterthepeople'))
 
 //  return response.map(obj => ({
 //     "type": "Feature",
