@@ -87,6 +87,7 @@ function parseBITData(artist) {
                 "artist": obj.artist,//  Ayan added more details for API call to render correct information to the HTML
                 "eventDate": obj.datetime
 
+
                 // add more details into description - as html
             }
 

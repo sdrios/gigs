@@ -7,7 +7,6 @@ var searchText = ''
 $("#search-bar").on("input", function(e){
 searchText = e.target.value
 searchTextJoin = e.target.value.toLowerCase().split(' ').join('')
-
 })
 
 $("#submit-button").on("click", async function(e){
