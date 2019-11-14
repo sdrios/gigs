@@ -83,9 +83,13 @@ function parseBITData(artist) {
             "properties": {
                 "title": obj.venue.name,
                 "icon": icons[randomInt],
-                "description": obj.offers[0].url
+                "description": obj.offers[0].url,
+                "artist": obj.artist,//  Ayan added more details for API call to render correct information to the HTML
+                "eventDate": obj.datetime
+
                 // add more details into description - as html
             }
+
         }))
     })
 

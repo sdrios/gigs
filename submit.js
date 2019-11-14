@@ -1,3 +1,7 @@
+var dataResponse = $.getJSON("/data.json", function(json){
+    console.log("test");
+    console.log(json);
+}); //Ayan changed: testing data from JSON file, changed file ext to .json instead of .js so file can be read correctly
 var searchText = ''
  
 $("#search-bar").on("input", function(e){
@@ -10,9 +14,28 @@ $("#submit-button").on("click", async function(e){
     e.preventDefault()
 
     searchResults = `<p>${searchText}</p>`
-    $('.results').append(searchResults)
+    let features = await parseBITData(searchTextJoin) // Ayan moved let features before append so API call would work 
+     $('.results').append(
+        `<ul>
+            <ls><b> Artist name:</b> ${features[0].properties.artist.name} </ls>
+            <ls><b> Facebook page:</b><a href=> ${features[0].properties.artist.facebook_page_url}</a></ls>
+        </ul>`)
+    for(var i = 0; i< features.length;i++){
+        console.log(features[i].properties.title);
+        $('.results').append(
 
-    let features = await parseBITData(searchTextJoin)
+            `<ul>
+                <ls><b> Date:</b> ${features[i].properties.eventDate}</ls>
+                <ls><b> Venue:</b> ${features[i].properties.title}</ls>
+            </ul>`
+        )
+    }//Ayan fixed append to show Artist name, FB page, & for loop for Date & venue information for each artist (made it UI friendly)
+    // still need to clear results in <div class=results> after new search 
+    // still need to make datetime more UI readable
+    
+
+    //let features = await parseBITData(searchTextJoin)
+    // Ayan moved let to line 17 (see note)
 
         map.addLayer({
             "id": `${searchText}`,
@@ -32,6 +55,7 @@ $("#submit-button").on("click", async function(e){
                     "text-anchor": "top"
                     }
         })
+        console.log(features); // Ayan console log to see full API call
     //map.removeLayer("points")
 })
 
