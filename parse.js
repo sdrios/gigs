@@ -81,7 +81,7 @@ function parseBITData(artist) {
             "properties": {
                 "title": obj.venue.name,
                 "icon": "horse-riding",
-                "description": obj.offers[0].url
+                "description": `<span>Buy Tickets:${obj.offers[0].url}</span>`
                 // add more details into description - as html
             }
         }))
