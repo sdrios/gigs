@@ -4,7 +4,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2RyaW9zIiwiYSI6ImNrMm8xbzRpdjB5bG8zZ250N3lnc
 //set map variable 
 var map = new mapboxgl.Map({
 container: 'map', // container id
-style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+sprite: "mapbox://sprites/mapbox/bright-v15",
 attributionControl: false,
 center: [-97.6764, 38.4067], // starting position [lng, lat]
 zoom: 3.55 // starting zoom
@@ -81,14 +82,7 @@ zoom: 3.55 // starting zoom
 //     .addTo(map);
 // })
 
-//change cursor to a pointer when the mouse is over the points layer
-map.on('mouseenter', 'places', function () {
-map.getCanvas().style.cursor = 'pointer';
-});
-//change cursor back from pointer when it leaves a point 
-map.on('mouseleave', 'places', function () {
-map.getCanvas().style.cursor = '';
-});
+
 
 //add navigation controls to map
 map.addControl(new mapboxgl.NavigationControl());
