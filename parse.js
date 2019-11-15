@@ -69,7 +69,7 @@
 // ]
 
 function parseBITData(artist) {
-    // let response
+
     // let icons = ["airport", "aquarium", "cricket", "playground", "rocket", "horse-riding", "dog-park", "fire-station", "garden-centre", "dam", "theatre", "volleyball", "industry", "zoo", "waterfall", "heart", "globe", "scooter", "skiing", "music"]
     let randomInt = Math.floor(Math.random() * 20)
     return axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=234e5ea75754d065ee8978bfc59ead7d&date=upcoming").then(function (axiosresponse) {
