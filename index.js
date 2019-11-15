@@ -11,60 +11,6 @@ center: [-97.6764, 38.4067], // starting position [lng, lat]
 zoom: 3.55 // starting zoom
 });
 
-//function that loads features on map load 
-// map.on('load', function(){
-//     map.addLayer({
-//         "id": "points",
-//         "type": "symbol",
-//         "source": {
-//         "type": "geojson",
-//         "data": {
-//                 "type": "FeatureCollection",
-//                     "features": [{
-//                     "type": "Feature",
-//                     "geometry": {
-//                     "type": "Point",
-//                     "coordinates": [-77.03238901390978, 38.913188059745586]
-//                     },
-//                     "properties": {
-//                     "title": "Mapbox DC",
-//                     "description":"test description!",
-//                     "icon": "monument"
-//                     }
-//                     }, {
-//                     "type": "Feature",
-//                     "geometry": {
-//                     "type": "Point",
-//                     "coordinates": [-122.414, 37.776]
-//                     },
-//                     "properties": {
-//                     "title": "Mapbox SF",
-//                      "description":"test description!",
-//                     "icon": "harbor"
-//                     }
-//                     },{
-//                     "type": "Feature",
-//                     "geometry": {
-//                     "type": "Point",
-//                     "coordinates": [-95.568370, 29.795564]
-//                     },
-//                     "properties": {
-//                     "title": "DigitalCrafts",
-//                     "description":"<strong>Houston Digital Crafts Campus</strong>, <br> located at The Cannon",
-//                     "icon": "monument"
-//                     }
-//                     }]
-//                 }
-//         },
-//         "layout": {
-//                 "icon-image": "{icon}-15",
-//                 "text-field": "{title}",
-//                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-//                 "text-offset": [0, 0.6],
-//                 "text-anchor": "top"
-//                  }
-//     })
-// })
 
 //display popup on-click event at the location of feature w/ description HTML from its feature properties
 // map.on('click', `${searchText}`, function(e){
