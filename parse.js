@@ -85,7 +85,10 @@ function parseBITData(artist) {
                 "icon": "music",
                 "description": obj.offers[0].url,
                 "artist": obj.artist,//  Ayan added more details for API call to render correct information to the HTML
-                "eventDate": obj.datetime
+                "eventDate": obj.datetime,
+                "country": obj.venue.country,
+                "city": obj.venue.city,
+                "region": obj.venue.region
 
                 // add more details into description - as html
             }
