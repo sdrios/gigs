@@ -2,13 +2,15 @@ var searchText = ''
 var clickCounter = 0
 var currentArtist = ''
  
-$("#search-bar").on("input", function(e){
-searchText = e.target.value
-searchTextJoin = e.target.value.toLowerCase().split(' ').join('')
-})
+// $("#search-bar").on("input", function(e){
+// searchText = e.target.value
+
+// })
 
 $("#submit-button").on("click", async function(e){
     e.preventDefault()
+    searchText = document.getElementById("search-bar").value
+    searchTextJoin = searchText.toLowerCase().split(' ').join('')
     clickCounter += 1
     console.log(clickCounter)
     let features = await parseBITData(searchTextJoin) 
@@ -140,6 +142,13 @@ function renderConcerts (features){
    
    return concertsRender
 }
+
+$("#similar-button").on("click", async function(e){
+    e.preventDefault()
+    //console.log(similarTextJoin)
+    let newArtist = (await fetchSimilarArtist(searchTextJoin))
+    document.getElementById("search-bar").value = newArtist
+})
 
 // map.on('click', `${searchText}`, function(e){
 //     var coordinates = e.features[0].geometry.coordinates.slice();
