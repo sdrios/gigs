@@ -18,34 +18,10 @@ $("#submit-button").on("click", async function(e){
             <ls><b> Artist name:</b> ${features[0].properties.artist.name} </ls>
         </ul>`)
 
-        //   <ls><b> Facebook page:</b><a href=> ${features[0].properties.artist.facebook_page_url}</a></ls>
-        
-        
-       
-        
-        
-    for(var i = 0; i< features.length;i++){
-        console.log(features[i]);
-        //console.log(typeof features[i].properties.eventDate)
-        var myDate = moment(features[i].properties.eventDate)
-        //console.log(myDate)
-        myDate.format("MMMM Do YYYY, h:mm:ss a'")
-        var dateFormat = myDate.format("MMMM Do YYYY, h:mm:ss a")
-        //console.log(myDate.format("MMMM Do YYYY, h:mm:ss a'"))
-        $('.results').append(
-            
-            `<ul>
-                <ls><b> Date:</b> ${dateFormat}     
-                </ls>
-                <ls><b> Venue:</b> ${features[i].properties.title}</ls>
-                <ls><button type="button" class ="btn-sm"><a href='${features[i].properties.description}' target='blank'>Get Tickets</a></button></ls>
-                <ls><button type="button" class ="btn-sm" onclick=offMapZoom(${features[i].geometry.coordinates[0]},${features[i].geometry.coordinates[1]})>Zoom to</button><ls>
 
-            </ul>`
+        $('.results').append(
+            renderConcerts(features)
         )
-        
-                
-    }
     
         //console.log(features); // Ayan console log to see full API call. ----------// .toString = ("YYYY-MM-dd HH:mm:ss") or  >moment().format("YYYY-MM-dd HH:mm:ss") or eventDate.format('dd-m-yy'); 
     if (clickCounter == 1) {
@@ -90,6 +66,8 @@ $("#submit-button").on("click", async function(e){
         })
     }
      currentArtist = features[0].properties.artist.name
+       map.fitBounds(geojsonExtent(features))
+     //map.flyTo({center: centerPoints(features), zoom:3}) //fly to center of points layer - still work in progress. Current issue - 
 
      //change cursor to a pointer when the mouse is over the points layer
         map.on('mouseenter', `${currentArtist}`, function () {
@@ -106,9 +84,59 @@ $("#submit-button").on("click", async function(e){
 })
 
 function offMapZoom(features1,  features2){
-   console.log(`${features1}, ${features2}`)
+  // console.log(`${features1}, ${features2}`)
     map.flyTo({center:[features1, features2], zoom:9})
     
+}
+
+//function to generate center point for a layer generated from features object
+function centerPoints (features){
+    var latSum = 0 //latitude sum
+    var longSum = 0 //longitude sum
+    var pointSum = 0 //number of points
+    var newLat = 0 //latitude averaged over point layer
+    var newLong = 0 //longitude averaged over point layer
+    var layerCenter = [] //array to hold new coordinates for center of points layer 
+
+    features.forEach(function(feature){
+        latSum += feature.geometry.coordinates[1]
+        longSum += feature.geometry.coordinates[0]
+        pointSum += 1
+    })
+    newLat = (latSum/pointSum)
+    newLong = (longSum/pointSum)
+    layerCenter.push(newLong)
+    layerCenter.push(newLat)
+
+    return layerCenter
+}
+
+function renderConcerts (features){
+    var concertsRender = []
+   features.forEach(function(feature){
+       if (!feature.properties.region){
+       concertsRender += `<ul>
+                <ls><b> Date:</b> ${feature.properties.eventDate}</ls>
+                <ls><b> Location:</b> ${feature.properties.city}, ${feature.properties.country} </ls>
+                <ls><button type="button" class ="btn-sm"><a href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
+                <ls><button type="button" class ="btn-sm" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom to</button><ls>
+
+            </ul>`
+       }
+
+       else{
+       concertsRender += `<ul>
+                <ls><b> Date:</b> ${feature.properties.eventDate}</ls>
+                <ls><b> Location:</b> ${feature.properties.city}, ${feature.properties.region}, ${feature.properties.country} </ls>
+                <ls><button type="button" class ="btn-sm"><a href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
+                <ls><button type="button" class ="btn-sm" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom to</button><ls>
+
+            </ul>`
+       }
+
+   })
+   
+   return concertsRender
 }
 
 // map.on('click', `${searchText}`, function(e){
