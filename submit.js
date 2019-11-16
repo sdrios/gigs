@@ -19,22 +19,35 @@ $("#submit-button").on("click", async function(e){
         </ul>`)
 
         //   <ls><b> Facebook page:</b><a href=> ${features[0].properties.artist.facebook_page_url}</a></ls>
-
+        
+        
+       
+        
+        
     for(var i = 0; i< features.length;i++){
         console.log(features[i]);
+        //console.log(typeof features[i].properties.eventDate)
+        var myDate = moment(features[i].properties.eventDate)
+        //console.log(myDate)
+        myDate.format("MMMM Do YYYY, h:mm:ss a'")
+        var dateFormat = myDate.format("MMMM Do YYYY, h:mm:ss a")
+        //console.log(myDate.format("MMMM Do YYYY, h:mm:ss a'"))
         $('.results').append(
-
+            
             `<ul>
-                <ls><b> Date:</b> ${features[i].properties.eventDate}</ls>
+                <ls><b> Date:</b> ${dateFormat}     
+                </ls>
                 <ls><b> Venue:</b> ${features[i].properties.title}</ls>
                 <ls><button type="button" class ="btn-sm"><a href='${features[i].properties.description}' target='blank'>Get Tickets</a></button></ls>
                 <ls><button type="button" class ="btn-sm" onclick=offMapZoom(${features[i].geometry.coordinates[0]},${features[i].geometry.coordinates[1]})>Zoom to</button><ls>
 
             </ul>`
         )
+        
+                
     }
     
-        //console.log(features); // Ayan console log to see full API call
+        //console.log(features); // Ayan console log to see full API call. ----------// .toString = ("YYYY-MM-dd HH:mm:ss") or  >moment().format("YYYY-MM-dd HH:mm:ss") or eventDate.format('dd-m-yy'); 
     if (clickCounter == 1) {
          map.addLayer({
             "id": `${features[0].properties.artist.name}`,

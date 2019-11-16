@@ -23,6 +23,11 @@ body {
 
  .results{
      border: 1px black solid;
+     float:left;
+     width:1000px;
+     overflow-y: auto;
+     height: 120px;
+     
     
      
  
@@ -31,5 +36,4 @@ body {
  a.mapboxgl-ctrl-logo {
      margin-left: 10px;
  }
-
 
