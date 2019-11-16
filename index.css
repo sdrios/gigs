@@ -15,6 +15,8 @@ body {
  .map-container{
      display: inline-block;
      padding-right: 2px;
+
+     
  }
 
  /* .mapboxgl-control-container {
@@ -23,9 +25,13 @@ body {
 
  .results{
      border: 1px black solid;
+    
      
+ 
  }
 
  a.mapboxgl-ctrl-logo {
      margin-left: 10px;
  }
+
+
