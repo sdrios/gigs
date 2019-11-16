@@ -1,18 +1,18 @@
 var searchText = ''
 var clickCounter = 0
 var currentArtist = ''
- 
-$("#search-bar").on("input", function(e){
-searchText = e.target.value
-searchTextJoin = e.target.value.toLowerCase().split(' ').join('')
-})
 
 $("#submit-button").on("click", async function(e){
     e.preventDefault()
+    searchText = document.getElementById("search-bar").value
+    searchTextJoin = searchText.toLowerCase().split(' ').join('')
     clickCounter += 1
-    console.log(clickCounter)
-    let features = await parseBITData(searchTextJoin) 
-    
+    let features = await parseBITData(searchTextJoin)
+    // console.log(features.properties)
+    // if (features.properties.data.length === 0) {
+    //     console.log("Sorry, no artist!")
+    // }
+    //console.log(features[0].properties.artist.name)
      $('.results').html(
         `<ul>
             <ls><b> Artist name:</b> ${features[0].properties.artist.name} </ls>
@@ -21,7 +21,7 @@ $("#submit-button").on("click", async function(e){
         //   <ls><b> Facebook page:</b><a href=> ${features[0].properties.artist.facebook_page_url}</a></ls>
 
     for(var i = 0; i< features.length;i++){
-        console.log(features[i]);
+        //console.log(features[i]);
         $('.results').append(
 
             `<ul>
@@ -98,6 +98,13 @@ function offMapZoom(features1,  features2){
     
 }
 
+$("#similar-button").on("click", async function(e){
+    e.preventDefault()
+    //console.log(similarTextJoin)
+    let newArtist = (await fetchSimilarArtist(searchTextJoin))
+    document.getElementById("search-bar").value = newArtist
+})
+
 // map.on('click', `${searchText}`, function(e){
 //     var coordinates = e.features[0].geometry.coordinates.slice();
 //     var description = e.features[0].properties.description;
@@ -111,4 +118,4 @@ function offMapZoom(features1,  features2){
 //     .setLngLat(coordinates)
 //     .setHTML(description)
 //     .addTo(map);
-// })
+//
