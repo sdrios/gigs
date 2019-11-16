@@ -18,12 +18,12 @@ $("#submit-button").on("click", async function(e){
             <ls><b> Artist name:</b> ${features[0].properties.artist.name} </ls>
         </ul>`)
 
+
         $('.results').append(
             renderConcerts(features)
         )
     
-    
-        //console.log(features); // Ayan console log to see full API call
+        //console.log(features); // Ayan console log to see full API call. ----------// .toString = ("YYYY-MM-dd HH:mm:ss") or  >moment().format("YYYY-MM-dd HH:mm:ss") or eventDate.format('dd-m-yy'); 
     if (clickCounter == 1) {
          map.addLayer({
             "id": `${features[0].properties.artist.name}`,
