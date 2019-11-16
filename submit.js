@@ -15,16 +15,12 @@ $("#submit-button").on("click", async function(e){
     console.log(clickCounter)
     let features = await parseBITData(searchTextJoin) 
     
-     $('.results').html(
-        `<ul>
-            <ls><b> Artist name:</b> ${features[0].properties.artist.name} </ls>
-        </ul>`)
+     $('.artist').html(
+        `<span> <b>Upcoming ${features[0].properties.artist.name} Concerts</b></span>`)
 
+    $('.concert-results').append(
+        renderConcerts(features))
 
-        $('.results').append(
-            renderConcerts(features)
-        )
-    
         //console.log(features); // Ayan console log to see full API call. ----------// .toString = ("YYYY-MM-dd HH:mm:ss") or  >moment().format("YYYY-MM-dd HH:mm:ss") or eventDate.format('dd-m-yy'); 
     if (clickCounter == 1) {
          map.addLayer({
@@ -68,7 +64,7 @@ $("#submit-button").on("click", async function(e){
         })
     }
      currentArtist = features[0].properties.artist.name
-       map.fitBounds(geojsonExtent(features))
+       //map.fitBounds(geojsonExtent(features))
      //map.flyTo({center: centerPoints(features), zoom:3}) //fly to center of points layer - still work in progress. Current issue - 
 
      //change cursor to a pointer when the mouse is over the points layer
@@ -115,24 +111,30 @@ function centerPoints (features){
 
 function renderConcerts (features){
     var concertsRender = []
+ 
    features.forEach(function(feature){
+       var myDate = moment(feature.properties.eventDate)
+       var dateFormat = myDate.format("MMMM Do YYYY, h:mm a")
+       
        if (!feature.properties.region){
        concertsRender += `<ul>
-                <ls><b> Date:</b> ${feature.properties.eventDate}</ls>
-                <ls><b> Location:</b> ${feature.properties.city}, ${feature.properties.country} </ls>
-                <ls><button type="button" class ="btn-sm"><a href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
-                <ls><button type="button" class ="btn-sm" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom to</button><ls>
-
+                 <ls><button type="button" class ="results-btn btn-sm btn-outline-success" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom</button><ls>
+                 <ls><span><b>Venue:</b><br>${feature.properties.title}</span></ls>
+                <ls><span><b> Date:</b><br> ${dateFormat}</span></ls>
+                <ls><b> Location:</b><br> ${feature.properties.city}, ${feature.properties.country} </ls>
+                <ls><button type="button" class ="results-btn btn-sm btn-outline-success"><a id="tickets" href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
+               
             </ul>`
        }
 
        else{
        concertsRender += `<ul>
-                <ls><b> Date:</b> ${feature.properties.eventDate}</ls>
-                <ls><b> Location:</b> ${feature.properties.city}, ${feature.properties.region}, ${feature.properties.country} </ls>
-                <ls><button type="button" class ="btn-sm"><a href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
-                <ls><button type="button" class ="btn-sm" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom to</button><ls>
-
+                
+                <ls><button type="button" class ="results-btn btn-sm btn-outline-success" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom</button><ls>
+                <ls><span><b>Venue:</b><br>${feature.properties.title}</span></ls>
+                <ls id="date"><br><b>Date:</b><br> ${dateFormat}</ls>
+                <ls id="location"> <b>Location:</b><br> ${feature.properties.city}, ${feature.properties.region}, ${feature.properties.country} </ls>
+                <ls><button type="button" class ="results-btn btn-outline-success"><a id="tickets" href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
             </ul>`
        }
 

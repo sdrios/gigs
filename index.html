@@ -22,6 +22,7 @@
     <!--Navbar-->
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand">Gigs</a>
+  <span class="artist"></span>
   <form class="form-inline">
     <input id ="search-bar" class="form-control mr-sm-2" type="search" placeholder="Artist" aria-label="Search">
     <button id="submit-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -34,18 +35,12 @@
         <div class="map-container col-sm-12 col-md-10 col-lg-12">
              <div id='map'></div> 
         </div>
-        
       </div>
       
         
-        <div class="row"> 
-
-         <div class="results col-md-2 col-md-12"> 
-
-          
-         
-
-        </div>
+    <div class="row"> 
+         <div class="artist-container col-2"></div>
+         <div class="concert-results col-md-2 col-md-12"></div>
     </div>
   </div>
 

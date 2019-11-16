@@ -23,18 +23,41 @@ body {
      display: none;
  } */
 
- .results{
-     border: 1px black solid;
-     float:left;
+ .concert-results{
+     /* border: 1px black solid; */
+     display:flex;
+     /*float:left;*/
      width:1000px;
      overflow-y: auto;
-     height: 120px;
-     
-    
-     
- 
+     /* height: 120px; */
+     border-top: 1px solid black;
+ }
+
+ .artist{
+     display:flex;
+     align-items: center;
+     text-align:center;
+     justify-content: center;
  }
 
  a.mapboxgl-ctrl-logo {
      margin-left: 10px;
  }
+
+ .results-btn{
+     background-color: #f8f9fa;
+ }
+
+ul{
+    width: 200px;
+    margin-top: 20px;
+}
+
+#tickets{
+   color:#28a745;
+}
+
+#tickets:hover{
+    color: #f8f9fa;
+}
+
