@@ -14,11 +14,11 @@ $("#submit-button").on("click", async function(e){
     clickCounter += 1
     console.log(clickCounter)
     let features = await parseBITData(searchTextJoin) 
-    
+
      $('.artist').html(
         `<span> <b>Upcoming ${features[0].properties.artist.name} Concerts</b></span>`)
 
-    $('.concert-results').append(
+    $('.concert-results').html(
         renderConcerts(features))
 
         //console.log(features); // Ayan console log to see full API call. ----------// .toString = ("YYYY-MM-dd HH:mm:ss") or  >moment().format("YYYY-MM-dd HH:mm:ss") or eventDate.format('dd-m-yy'); 
@@ -43,7 +43,7 @@ $("#submit-button").on("click", async function(e){
         })
     }
     else {
-        map.removeLayer(`${currentArtist}`)
+        await map.removeLayer(`${currentArtist}`)
         map.addLayer({
             "id": `${features[0].properties.artist.name}`,
             "type": "symbol",
@@ -119,9 +119,9 @@ function renderConcerts (features){
        if (!feature.properties.region){
        concertsRender += `<ul>
                  <ls><button type="button" class ="results-btn btn-sm btn-outline-success" onclick=offMapZoom(${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]})>Zoom</button><ls>
-                 <ls><span><b>Venue:</b><br>${feature.properties.title}</span></ls>
-                <ls><span><b> Date:</b><br> ${dateFormat}</span></ls>
-                <ls><b> Location:</b><br> ${feature.properties.city}, ${feature.properties.country} </ls>
+                 <ls><br><span><b>Venue:</b><br>${feature.properties.title}</span></ls>
+                <ls><br><span><b> Date:</b><br> ${dateFormat}</span></ls>
+                <ls><br><b> Location:</b><br> ${feature.properties.city}, ${feature.properties.country} </ls>
                 <ls><button type="button" class ="results-btn btn-sm btn-outline-success"><a id="tickets" href='${feature.properties.description}' target='blank'>Get Tickets</a></button></ls>
                
             </ul>`
