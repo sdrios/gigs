@@ -16,7 +16,7 @@ $("#submit-button").on("click", async function(e){
     let features = await parseBITData(searchTextJoin) 
 
      $('.artist').html(
-        `<span> <b>Upcoming ${features[0].properties.artist.name} Concerts</b></span>`)
+        `<span><b>Upcoming ${features[0].properties.artist.name} Concerts</b></span>`)
 
     $('.concert-results').html(
         renderConcerts(features))
