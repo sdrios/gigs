@@ -64,7 +64,7 @@ $("#submit-button").on("click", async function(e){
         })
     }
      currentArtist = features[0].properties.artist.name
-       //map.fitBounds(geojsonExtent(features))
+       map.fitBounds(geojsonExtent(features))
      //map.flyTo({center: centerPoints(features), zoom:3}) //fly to center of points layer - still work in progress. Current issue - 
 
      //change cursor to a pointer when the mouse is over the points layer

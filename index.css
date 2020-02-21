@@ -4,28 +4,12 @@ body {
     background-color:#f8f9fa;
      }
 
-.mapboxgl-map {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    }
 
- /* .map-container #map {
+ .map-container #map {
     position: initial;
     top: 0;
     bottom: 0;
     height: 500px;
- } */
-
- .map-container{
-     display: inline-block;
-     padding-right: 2px;
-     
- } 
-
- .mapboxgl-control-container {
-     display: none;
  }
 
  .concert-results{

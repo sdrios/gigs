@@ -22,6 +22,7 @@ function parseBITData(artist) {
 
         }))
     })
+}
 
     
     // let objArray = []
@@ -71,7 +72,7 @@ function parseBITData(artist) {
     //         "description": obj.offers[0].url
     //     }
     // }))
-}
+//}
 //console.log(parseBITData('fosterthepeople'))
 
 //  return response.map(obj => ({
